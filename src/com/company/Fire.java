@@ -15,10 +15,9 @@ public class Fire {
         shoot[0] = input.nextInt();
         shoot[0]--;
 
-        // row validation
+        //checking for valid row
 
-
-//        while (shoot[0] > 10 || shoot[0] < 1) {
+//        while (shoot[0] > 5 || shoot[0] < 5) {
 //            System.out.println("Enter a valid row (between 1 and 10)");
 //        }
 
@@ -28,10 +27,10 @@ public class Fire {
         shoot[1] = input.nextInt();
         shoot[1]--;
 
-        //column validation
+        //checking for valid column
 
 
-//        while (shoot[1] > 10 || shoot[1] < 1) {
+//        while (shoot[1] > 5 || shoot[1] < 5) {
 //            System.out.println("Enter a valid column (between 1 and 10)");
 //        }
     }
