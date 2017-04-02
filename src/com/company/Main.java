@@ -1,8 +1,11 @@
 package com.company;
 
+import static com.company.Fire.directHit;
 import static com.company.Fire.userFire;
+import static com.company.Grid.changeGrid;
 import static com.company.Grid.createGrid;
 import static com.company.Grid.visibleGrid;
+import static com.company.Pointer.goal;
 import static com.company.Ships.createShip;
 
 public class Main {
@@ -14,32 +17,35 @@ public class Main {
             createGrid(grid);
             int[][] ship = new int[5][5];
             createShip(ship);
-            int[] fire = new int[2];
+            int[] pewPew = new int[2];
 
-            int missiles = 20;
-            int directHit = 0;
-            while (missiles > 0 && directHit < 4) {
+            int blasts = 0,
+                    aHit = 0;
+
+            System.out.println();
+
+            do {
+
                 visibleGrid(grid);
-                directHit = userFire();
-                missiles--;
+                userFire(pewPew);
+                blasts++;
+
+                if (directHit(pewPew, ship)) {
+                    goal(pewPew, ship, blasts);
+                    aHit++;
+                } else /*(directHit(pewPew, ship))*/ {
+                    goal(pewPew, ship, blasts);
+                    changeGrid(pewPew, ship, grid);
+                }
             }
-            execute(directHit, missiles);
+                while (aHit != 3);{
+
+                    System.out.println("\n\n\nBattleship Java game finished! You hit 3 ships in " + pewPew + " attempts");
+                    visibleGrid(grid);
+                }
+            }
+
         }
     }
 
-        public static void execute(int connects, int missiles)
-        {
-            if(connects < 4)
-                System.out.println("You didn't sink any battleships.");
-            if(missiles < 1)
-                System.out.println("You're out of missiles.");
-            else
-            if(connects >= 4)
-            {
-                System.out.println("You won!");
-            }
-            System.out.println("Congratulations!!!");
-        }
-
-    }
 

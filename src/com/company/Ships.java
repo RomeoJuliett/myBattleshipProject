@@ -1,29 +1,29 @@
 package com.company;
 
+import java.awt.*;
+import java.util.Random;
+
 /**
  * Created by Reco Jefferson on 4/1/17.
  */
 public class Ships {
 
-    public static void createShip(int[][] ship,int size)
+    public static void createShip(int[][] battleShips)
     {
-        if(Math.random() < 0.5)
-        {
-            int col = (int)(Math.random()*6);
-            int row = (int)(Math.random()*8);
-            for(int i = 0; i<size; i++)
-            {
-                ship[row][col+i] = 1;
+        Random random = new Random();
+
+        for(int ship=0 ; ship < 3 ; ship++){
+            battleShips[ship][0]=random.nextInt(5);
+            battleShips[ship][1]=random.nextInt(5);
+
+            for(int last=0 ; last < ship ; last++){
+                if( (battleShips[ship][0] == battleShips[last][0])&&(battleShips[ship][1] == battleShips[last][1]) )
+                    do{
+                        battleShips[ship][0]=random.nextInt(5);
+                        battleShips[ship][1]=random.nextInt(5);
+                    }while( (battleShips[ship][0] == battleShips[last][0])&&(battleShips[ship][1] == battleShips[last][1]) );
             }
-        }
-        else
-        {
-            int col = (int)(Math.random()*8);
-            int row = (int)(Math.random()*6);
-            for(int i = 0; i<size; i++)
-            {
-                ship[row+i][col] = 2;
-            }
+
         }
     }
 }
